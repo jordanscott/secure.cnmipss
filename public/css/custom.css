@@ -82,6 +82,10 @@ Create Account Page */
 ========================================================================== 
 Dashboard */
 
+.dashboard h4 {
+  border-bottom: 1px solid lightgray;
+}
+
 .tabs-content .active {
   min-height: 500px;
 }
