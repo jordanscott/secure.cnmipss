@@ -23,18 +23,6 @@ View::share('site_name', 'Staff Portal');
 */
 
 
-
-
-
-Route::get('home', 'HomeController@index');
-
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
-
-
-
 /*
 | Unauthenticated group
 */
@@ -99,7 +87,7 @@ Route::group(array('before' => 'auth'), function(){
 		//POST User Feedback
 		Route::post('/account/feedback', array(
 			'as'=>'feedback',
-			'uses' => 'AccountController@postFeedback'
+			'uses' => 'ContactController@postFeedback'
 			));
 
 	});

@@ -30,7 +30,13 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('guests.welcome');
+		if(Auth::check()){
+			return Redirect::route('dashboard');
+		}
+		else{
+			return view('guests.welcome');
+		}
+		
 	}
 
 }

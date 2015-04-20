@@ -186,7 +186,6 @@ class AccountController extends Controller {
 		}
 		else
 		{
-			
 			return View::make('account.login');
 		}
 	}

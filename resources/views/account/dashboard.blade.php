@@ -4,7 +4,11 @@
 
 
   @if (Session::has('global'))
-    <div class="alert-box success">{{{ Session::get('global') }}}</div>
+    <div class="alert-box info top-alert">{{{ Session::get('global') }}}</div>
+  @elseif(Session::has('message'))
+    <div class="alert-box success top-alert">{{{ Session::get('message') }}}</div>
+  @elseif(Session::has('error'))
+    <div class="alert-box alert top-alert">{{{ Session::get('error') }}}</div>
   @endif
 	
 	<div class="dashboard large-12 columns">
@@ -19,7 +23,7 @@
 		</dl>
 		<div class="tabs-content vertical">
 		  <div class="content active" id="panel1">
-		    <p>Welcome to PSS' new Staff Portal.  Right now we are in a testing phase so there is not a lot of content here.  The one thing we do offer as of right now is a helpdesk to log an issue with Aministration Services.  Please feel free to use the helpdesk to contact Administration Services for assistance.<br><br>
+		    <p>Welcome to PSS' new Staff Portal.  Right now we are in a testing phase so there is not a lot of content here.  The one thing we do offer, as of right now, is a helpdesk to log an issue with Aministration Services.  Please feel free to use the helpdesk to contact Administration Services for assistance.<br><br>
 
 		    We could really use your help in determining what information and content to put in our new staff portal.  Let us know in the Feedback tab.</p>
 		  </div>

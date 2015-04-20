@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use Input, Validator, Mail, Redirect;
+
 class ContactController extends Controller {
 
 	/**
@@ -34,41 +36,33 @@ class ContactController extends Controller {
 	 */
 	public function postFeedback()
 	{
-		//Get all the data and store it inside Store Variable
-        $data = Input::all();
-
-        //Validation rules
-        $rules = array (
-            'feedback' => 'required|min:5|max:250'
-        );
-
         //Validate data
-        $validator = Validator::make ($data, $rules);
+        $validator = Validator::make(Input::all(), array(
+            'feedback' => 'required|min:5|max:250'
+        ));
 
         //If everything is correct than run passes.
         if ($validator -> passes()){
 
-           Mail::send('emails.feedback', $data, function($message) use ($data)
+ 		   $feedback = array(
+ 		   		'feedback' => Input::get('feedback'));
+
+           Mail::send('emails.feedback', $feedback, function($message) use ($feedback)
             {
-                //$message->from($data['email'] , $data['first_name']); uncomment if using first name and email fields 
-                $message->from('feedback@gmail.com', 'feedback contact form');
-			    //email 'To' field: cahnge this to emails that you want to be notified.                    
-			    $message->to('feedback@gmail.com', 'John')->cc('feedback@gmail.com')->subject('feedback form submit');
+            	$message->to('jordan.scott@cnmipss.org', 'Jordan')->subject('Feedback | Staff Portal');
 
-			            });
-			            // Redirect to page
-			   return Redirect::route('home')
-			    ->with('message', 'Your message has been sent. Thank You!');
+			});
+		   // Redirect to page
+		   return Redirect::route('dashboard')
+		    ->with('message', 'Your feedback is much appreciated. Thank You!');
 
-
-			            //return View::make('contact');  
-			         }else{
-			   //return contact form with errors
-			            return Redirect::route('home')
-			             ->with('error', 'Feedback must contain more than 5 characters. Try Again.');
-
-			         }
-			}
+		              
+	    }else{
+			//return contact form with errors
+	        return Redirect::route('dashboard')
+	         ->with('error', 'Feedback must contain more than 5 characters. Please try again.');
+	    }
+	
 	}
 
 	/**
