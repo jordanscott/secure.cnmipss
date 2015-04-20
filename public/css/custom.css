@@ -1,0 +1,103 @@
+
+/* Basic Classes
+   ========================================================================== */
+
+body {
+	height: auto;
+}
+
+.center-text {
+  text-align: center;
+}
+
+p.validation-error {
+  font-size: 0.8rem;
+  text-align: center;
+  background: orangered;
+  color: white;
+  margin: -17px 0 5px;
+}
+
+.top-bar {
+  margin-bottom: 40px;
+}
+
+.copyright p{
+  font-size: 0.8rem;
+}
+
+.top-alert {
+  margin-top: -2.5rem;
+}
+
+
+/* END Basic Classes
+========================================================================== 
+Welcome Page */
+
+
+.welcome-headline {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  font-size: 2em;
+}
+
+.welcome-banner {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 6%;
+}
+.welcome-buttons {
+  margin-top: 1%;
+  text-align: center;
+}
+
+span.time {
+  color: white;
+  font-size: 0.8em;
+  margin-right:5px;
+  line-height: 5;
+}
+
+/* END Welcome Page
+========================================================================== 
+Login Page */
+
+div.signin-signup {
+  margin-top: 4%;
+}
+
+/* END Login Page
+========================================================================== 
+Create Account Page */
+
+
+
+/* END Create Account Page
+========================================================================== 
+Dashboard */
+
+.tabs-content .active {
+  background: gainsboro;
+  min-height: 500px;
+}
+
+.tabs-content.vertical>.content {
+  padding: 1.9375rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
