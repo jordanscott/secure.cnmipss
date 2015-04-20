@@ -83,8 +83,11 @@ Create Account Page */
 Dashboard */
 
 .tabs-content .active {
-  background: gainsboro;
   min-height: 500px;
+}
+
+dd.active {
+  border-right: 5px solid #008cba;
 }
 
 .tabs-content.vertical>.content {
