@@ -28,6 +28,8 @@ p.validation-error {
 
 .top-alert {
   margin-top: -2.5rem;
+  padding: 0.175rem 0.5rem 0.175rem 0.175rem;
+  text-align: center;
 }
 
 

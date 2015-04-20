@@ -2,13 +2,13 @@
 @section('content')
 
   @if (Session::has('check'))
-    <div class="center-text alert-box alert top-alert">{{{ Session::get('check') }}}</div>
+    <div class="alert-box alert top-alert">{{{ Session::get('check') }}}</div>
   @endif
   @if (Session::has('global'))
-    <div class="center-text alert-box success top-alert">{{{ Session::get('global') }}}</div>
+    <div class="alert-box success top-alert">{{{ Session::get('global') }}}</div>
   @endif
   @if (Session::has('message'))
-    <div class="center-text alert-box success top-alert">{{{ Session::get('message') }}}</div>
+    <div class="alert-box success top-alert">{{{ Session::get('message') }}}</div>
   @endif
 
   	<div class="large-offset-2 large-8 column signin-signup">
