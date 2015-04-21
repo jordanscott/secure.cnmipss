@@ -16,8 +16,6 @@
 					<ul class="dropdown">
 							<li class=""><a href="{{ URL::route('dashboard') }}">Dashboard</a></li>
 							<li class="divider"></li>
-							<li class=""><a href="{{ URL::route('change-password') }}">Change Password</a></li>
-							<li class="divider"></li>
 							<li class=""><a href="{{ URL::route('logout') }}">Logout</a></li>
 					</ul>
 				</li>

@@ -37,7 +37,7 @@
 			<hr />
 			<div class="row">
 				<div class="small-8 large-8 columns copyright">
-					<p>&copy; <?php echo date('Y');?> Commonwealth of the Northern Mariana Islands Public School System</p>
+					<p>Commonwealth of the Northern Mariana Islands Public School System</p>
 				</div>
 			</div>
 		</div>
