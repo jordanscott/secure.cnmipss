@@ -43,6 +43,11 @@ Route::group(array('before' => 'guest'), function(){
 			'as'=>'post-reminder',
 			'uses' => 'Auth\PasswordController@postEmail'
 			));
+		//POST Route to Password Resetting
+		Route::post('/post-reset', array(
+			'as'=>'post-reset',
+			'uses' => 'Auth\PasswordController@postReset'
+			));
 
 	});
 });
@@ -75,6 +80,12 @@ Route::group(array('before' => 'guest'), function(){
 	Route::get('/password-remind', array(
 		'as' => 'get-email',
 		'uses' => 'Auth\PasswordController@getEmail'
+		));
+
+	//GET Reset Password view with token
+	Route::get('/password/reset/{token}', array(
+		'as' => 'get-reset',
+		'uses' => 'Auth\PasswordController@getReset'
 		));
 
 
