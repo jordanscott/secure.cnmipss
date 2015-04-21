@@ -14,9 +14,9 @@
 			@if (Auth::check()) 
 				<li class="has-dropdown"><a href="#">Welcome {{{ Auth::user()->first_name }}}</a>
 					<ul class="dropdown">
-							<li class=""><a href="">Dashboard</a></li>
+							<li class=""><a href="{{ URL::route('dashboard') }}">Dashboard</a></li>
 							<li class="divider"></li>
-							<li class=""><a href="">Change Password</a></li>
+							<li class=""><a href="{{ URL::route('change-password') }}">Change Password</a></li>
 							<li class="divider"></li>
 							<li class=""><a href="{{ URL::route('logout') }}">Logout</a></li>
 					</ul>

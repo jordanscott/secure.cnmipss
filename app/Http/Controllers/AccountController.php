@@ -8,19 +8,69 @@ use Illuminate\Http\Request;
 
 class AccountController extends Controller {
 
+
+
 	/**
-	 * Display a listing of the resource.
+	 * Show the form for logging into pss staff account.
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function createLogin()
 	{
+		if (Auth::check()) {
+			return View::make('account.dashboard');
+		}
+		else{
+			return View::make('account.login');
+		}
+	}
+
+	/**
+	 * Post the account login to verify then login.
+	 *
+	 * @return Response
+	 */
+	public function postLogin()
+	{
+		$validator = Validator::make(Input::all(), array(
+			'email'    => 'required|email',
+			'password' => 'required'
+		));
+
+		if($validator->fails())
+		{
+			return Redirect::route('login')
+				->withErrors($validator)
+				->withInput();
+		}
+		else
+		{
+			$remember = (Input::has('remember')) ? true : false;
+
+			$auth = Auth::attempt(array(
+				'email'    => Input::get('email'),
+				'password' => Input::get('password'),
+				'active'   => 1
+				), $remember
+			);
+
+			if ($auth) {
+				
+				return Redirect::route('dashboard');
+			}
+			else
+			{
+				return Redirect::route('login')->with('check', 'Please check your email and password. ');
+			}
+		}
+
+		return Redirect::route('login')->with('global', 'There was a problem signing you in. Have you activated your account? ');
 
 	}
 
 
 	/**
-	 * Show the form for creating a new account.
+	 * Show the form for creating a new pss staff account.
 	 *
 	 * @return Response
 	 */
@@ -31,7 +81,7 @@ class AccountController extends Controller {
 
 
 	/**
-	 * Store a newly created resource in Users Database.
+	 * Store a newly created User in users Database.
 	 *
 	 * @return Response
 	 */
@@ -116,66 +166,6 @@ class AccountController extends Controller {
 
 
 	/**
-	 * Show the form for logging into account.
-	 *
-	 * @return Response
-	 */
-	public function createLogin()
-	{
-		if (Auth::check()) {
-			return View::make('account.dashboard');
-		}
-		else{
-			return View::make('account.login');
-		}
-	}
-
-
-	/**
-	 * Show the form for logging into account.
-	 *
-	 * @return Response
-	 */
-	public function postLogin()
-	{
-		$validator = Validator::make(Input::all(), array(
-			'email'    => 'required|email',
-			'password' => 'required'
-		));
-
-		if($validator->fails())
-		{
-			return Redirect::route('account-login')
-				->withErrors($validator)
-				->withInput();
-		}
-		else
-		{
-			$remember = (Input::has('remember')) ? true : false;
-
-			$auth = Auth::attempt(array(
-				'email'    => Input::get('email'),
-				'password' => Input::get('password'),
-				'active'   => 1
-				), $remember
-			);
-
-			if ($auth) {
-				
-				return Redirect::route('dashboard');
-			}
-			else
-			{
-				return Redirect::route('login')->with('check', 'Please check your email and password. ');
-			}
-		}
-
-		return Redirect::route('login')->with('global', 'There was a problem signing you in. Have you activated your account? ');
-
-	}
-
-
-	/**
 	 * Display dashboard to logged in user
 	 */
 	public function dashboard()
@@ -192,59 +182,6 @@ class AccountController extends Controller {
 
 
 	/**
-	 * Display Change Password View
-	 */
-	public function changePassword()
-	{
-		return View::make('account.passchange');
-	}
-
-
-	/**
-	 * POST Change Password View
-	 */
-	public function postChangePassword()
-	{
-		$validator = Validator::make(Input::all(), array(
-			'current_password' => 'required',
-			'password'         => 'required|min:6', 
-			'verify_password'  => 'required|same:password'
-		));
-
-		if($validator->fails())
-		{
-			return Redirect::route('change-password')
-				->withErrors($validator);
-		}
-		else
-		{
-			$user = User::find(Auth::user()->id);
-			$current_password = Input::get('current_password');
-			$password         = Input::get('password');
-
-			if (Hash::check($current_password, $user->getAuthPassword())) {
-
-				$user->password = Hash::make($password);
-
-				if ($user->save()) {
-
-					return Redirect::route('login')->with('global', 'Your password has been successfully changed!');
-
-				}
-			}
-			else {
-
-				return Redirect::route('change-password')->with('check', 'Your current password was incorrect.');
-
-			}
-		}
-
-		return Redirect::route('change-password')->with('check', 'There was a problem changing your password.');
-
-	}
-
-
-	/**
 	 * Logout current user
 	 */
 	public function logOut()
@@ -254,52 +191,5 @@ class AccountController extends Controller {
     	return Redirect::route('login')->with('message', 'You have been successfully logged out!');	
 	}
 
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
 
 }

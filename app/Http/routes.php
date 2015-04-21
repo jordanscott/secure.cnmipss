@@ -1,7 +1,4 @@
 <?php
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Variables Accessible to All Views
@@ -41,6 +38,11 @@ Route::group(array('before' => 'guest'), function(){
 			'as'=>'account-login-post',
 			'uses' => 'AccountController@postLogin'
 			));
+		//POST Route to Password Change Reminder Email
+		Route::post('/sending-reminder', array(
+			'as'=>'send-reminder',
+			'uses' => 'Auth\PasswordController@postRemind'
+			));
 
 	});
 });
@@ -62,9 +64,17 @@ Route::group(array('before' => 'guest'), function(){
 		'as'=>'create',
 		'uses' => 'AccountController@create'
 		));
+
+	//Show login page after activation successful (GET)
 	Route::get('/activate/{code}', array(
 		'as'=>'activate',
 		'uses' => 'AccountController@getActivate'
+		));
+
+	//GET Change Password
+	Route::get('/password-remind', array(
+		'as' => 'password-remind',
+		'uses' => 'Auth\PasswordController@getRemind'
 		));
 
 
@@ -110,16 +120,5 @@ Route::group(array('before' => 'auth'), function(){
 	  	'uses' => 'AccountController@logOut'
 	  	));
 
-
-	//Cross Site Request Forgery Protection for Uploads
-	Route::group(array('before'=>'csrf'), function(){
-
-		//Create Account (POST)
-		Route::post('/account/upload', array(
-			'as'=>'upload',
-			'uses' => 'UploadsController@store'
-			));
-
-	});
 
 });

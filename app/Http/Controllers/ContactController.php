@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use Input, Validator, Mail, Redirect;
+use Input, Validator, Mail, Redirect, Auth;
 
 class ContactController extends Controller {
 
@@ -45,7 +45,10 @@ class ContactController extends Controller {
         if ($validator -> passes()){
 
  		   $feedback = array(
- 		   		'feedback' => Input::get('feedback'));
+ 		   		'feedback' => Input::get('feedback'),
+ 		   		'name' => Auth::user()->first_name,
+ 		   		'department' => Auth::user()->department
+ 		   		);
 
            Mail::send('emails.feedback', $feedback, function($message) use ($feedback)
             {

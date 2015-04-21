@@ -50,7 +50,7 @@
 	          <input class="button expand" type="submit" value="Change Password" />
 	      </div>
 	    </div>
-	    {{ Form::token() }}
+	    {!! Form::token() !!}
 	  </form>
 	</div>
 	

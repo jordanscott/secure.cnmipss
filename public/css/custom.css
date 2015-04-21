@@ -72,6 +72,12 @@ div.signin-signup {
   margin-top: 4%;
 }
 
+.forgot-link{
+  float: right;
+  font-size: 0.8rem;
+  line-height: 2;
+}
+
 /* END Login Page
 ========================================================================== 
 Create Account Page */
