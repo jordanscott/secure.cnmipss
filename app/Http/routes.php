@@ -39,9 +39,9 @@ Route::group(array('before' => 'guest'), function(){
 			'uses' => 'AccountController@postLogin'
 			));
 		//POST Route to Password Change Reminder Email
-		Route::post('/sending-reminder', array(
-			'as'=>'send-reminder',
-			'uses' => 'Auth\PasswordController@postRemind'
+		Route::post('/post-reminder', array(
+			'as'=>'post-reminder',
+			'uses' => 'Auth\PasswordController@postEmail'
 			));
 
 	});
@@ -73,8 +73,8 @@ Route::group(array('before' => 'guest'), function(){
 
 	//GET Change Password
 	Route::get('/password-remind', array(
-		'as' => 'password-remind',
-		'uses' => 'Auth\PasswordController@getRemind'
+		'as' => 'get-email',
+		'uses' => 'Auth\PasswordController@getEmail'
 		));
 
 

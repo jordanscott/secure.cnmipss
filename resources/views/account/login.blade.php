@@ -38,7 +38,7 @@
 	    <div>
 			<input id="remember" name="remember" type="checkbox">
 			<label for="remember">Remember Me</label>
-			<a class="forgot-link" href="{{ URL::route('password-remind') }}">Forgot Password?</a>
+			<a class="forgot-link" href="{{ URL::route('get-email') }}">Forgot Password?</a>
 		</div>
 	    <div class="row">
 	      <div class="columns">
